@@ -1,6 +1,6 @@
 import React from 'react'
 
-function CarDetails({brand, km, color}) {
+function CarDetails({brand, km, color, newCar}) {
   return (
     <div>
         <h2>
@@ -12,6 +12,9 @@ function CarDetails({brand, km, color}) {
             <li>Cor: {color}</li>
 
         </ul>
+        {
+            new && <p>Este carro é novo!</p>
+        }
     </div>
   )
 }
