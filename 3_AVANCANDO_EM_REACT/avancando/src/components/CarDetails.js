@@ -13,7 +13,7 @@ function CarDetails({brand, km, color, newCar}) {
 
         </ul>
         {
-            new && <p>Este carro é novo!</p>
+            newCar && <p>Este carro é novo!</p>
         }
     </div>
   )

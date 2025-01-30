@@ -8,6 +8,19 @@ import ShowUserName from './components/ShowUserName';
 import CarDetails from './components/CarDetails';
 
 function App() {
+  
+  const cars = [
+    {id: 1, brand: "Audi", color: "Azul", newCar: true, km:0},
+    {id: 2, brand: "BME", color: "Preto", newCar: false, km:54},
+    {id: 3, brand: "Porshe", color: "Branco", newCar: true, km:542},
+
+
+  ]
+
+
+
+
+
   return (
     <div className="App">
       <h1>avançando em react</h1>
@@ -35,6 +48,17 @@ function App() {
       }
       <CarDetails brand="BMW" km={3000} color="Branco" newCar = {true}/>
       <CarDetails brand="FIAT" km={103000} color="Preto" newCar = {false}/>
+      {
+        /*loop em array */
+      }
+      {cars.map((car)=>(
+        <CarDetails 
+        brand={car.brand} 
+        color={car.color} 
+        km={car.kn}
+        newCar={car.newCar}
+        />
+      ))}
     </div>
     
   );
