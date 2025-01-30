@@ -5,6 +5,7 @@ import ManageData from './components/ManageData';
 import ListRender from './components/ListRender';
 import ConditionalRender from './components/ConditionalRender';
 import ShowUserName from './components/ShowUserName';
+import CarDetails from './components/CarDetails';
 
 function App() {
   return (
@@ -21,7 +22,11 @@ function App() {
       <ManageData/>
       <ListRender/>
       <ConditionalRender/>
+      {
+        /*props */
+      }
       <ShowUserName name ="wallames"/>
+      <CarDetails brand="AUDI" km={10000} color="Azul"/>
     </div>
     
   );
