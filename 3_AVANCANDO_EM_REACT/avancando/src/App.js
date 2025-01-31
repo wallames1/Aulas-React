@@ -7,6 +7,8 @@ import ConditionalRender from './components/ConditionalRender';
 import ShowUserName from './components/ShowUserName';
 import CarDetails from './components/CarDetails';
 import Fragment from './components/Fragment';
+import Container from './components/Container';
+import ExecuteFunction from './components/ExecuteFunction'
 
 function App() {
   
@@ -19,7 +21,9 @@ function App() {
   ]
 
 
-
+  function showMessage(){
+    console.log("evento do componente pai")
+  }
 
 
   return (
@@ -54,6 +58,7 @@ function App() {
       }
       {cars.map((car)=>(
         <CarDetails 
+        key={car.id}
         brand={car.brand} 
         color={car.color} 
         km={car.kn}
@@ -64,6 +69,16 @@ function App() {
         /*fragment */
       }
       <Fragment/>
+
+      {
+        /*fragment */
+      }
+      <Container>ffff</Container>
+
+      {
+        /*executar função */
+      }
+      <ExecuteFunction myFunction={showMessage}/>
     </div>
     
   );
