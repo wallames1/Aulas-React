@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Img2 from './assets/img2.jpg'
 import ManageData from './components/ManageData';
@@ -9,6 +8,9 @@ import CarDetails from './components/CarDetails';
 import Fragment from './components/Fragment';
 import Container from './components/Container';
 import ExecuteFunction from './components/ExecuteFunction'
+import ChangeMessageState from './components/ChangeMessageState';
+import Message from './components/Message';
+import { useState } from 'react';
 
 function App() {
   
@@ -20,6 +22,11 @@ function App() {
 
   ]
 
+  const [message, setMessage] = useState("");
+
+  const handleMessage = (msg) => {
+    setMessage(msg);
+  }
 
   function showMessage(){
     console.log("evento do componente pai")
@@ -79,6 +86,12 @@ function App() {
         /*executar função */
       }
       <ExecuteFunction myFunction={showMessage}/>
+
+      {
+        /*state lift */
+      }
+      <Message msg={message}/>
+      <ChangeMessageState handleMessage={handleMessage}/>
     </div>
     
   );
