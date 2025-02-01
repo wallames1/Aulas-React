@@ -2,6 +2,7 @@ import './App.css';
 import MyComponent from "./components/MyComponent";
 
 function App() {
+  const n = 50
   return (
     <div className="App">
       {/**css de global */}
@@ -10,6 +11,9 @@ function App() {
       <MyComponent/>
       <p>este paragrafo é do app.js</p>
       <p className="test" >este paragrafo é do app.js</p>
+      <h1 style={n > 10 ? {color:"blue"} : {color:"black"} }>CSS DINAMICO INLINE</h1>
+      <h1 style={n < 10 ? {color:"blue"} : {color:"black"} }>CSS DINAMICO INLINE</h1>
+
     </div>
 
   );
