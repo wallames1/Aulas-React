@@ -6,3 +6,11 @@ body {
 h1 {
   color: red;
 }
+.red-title{
+  background-color: bisque;
+  color: aliceblue;
+}
+.title{
+  background-color: blueviolet;
+  color: antiquewhite;
+}
