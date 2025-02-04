@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+}
+
+h1{
+  background-color: antiquewhite;
+  color: blueviolet;
+  margin: 10px;
+  border-radius: 10px;
+}
+.Cars{
+  background-color: black;
+}
