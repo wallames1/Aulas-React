@@ -6,17 +6,21 @@ function MyForm({user}) {
     const [name, setName] = useState(user ? user.name : "")
     const [email, setEmail] = useState(user ? user.email : "")
 
+    const [bio, setBio] = useState("")
+
     const handleName = (e) => {
         setName(e.target.value)
     }
-    console.log(name, email)
+    
 
     const handleSubmit = (e)=>{
         e.preventDefault()
         console.log("Enviando o Form")
+        console.log(name, email, bio)
         //7-limpar form
         setName("")
         setEmail("")
+        setBio("")
 
     }
 
@@ -35,6 +39,11 @@ function MyForm({user}) {
                 <span>E-mail:</span>
                 {/*4-simplificaçao de manipulaçao de state*/}
                 <input type="email" name="email" placeholder="Digite seu E-mail" onChange={(e)=>setEmail(e.target.value)} value={email}/>
+            </label>
+            {/*8-text area*/}
+            <label htmlFor="">
+                <span>Bio:</span>
+                <textarea name="bio" placeholder='descrição do usuario' onChange={(e) => setBio(e.target.value)} value={bio}></textarea>
             </label>
             <input type="submit" value="Enviar"/>
         </form>
