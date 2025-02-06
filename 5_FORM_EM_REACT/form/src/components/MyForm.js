@@ -8,6 +8,8 @@ function MyForm({user}) {
 
     const [bio, setBio] = useState("")
 
+    const [role, setRole] = useState("")
+
     const handleName = (e) => {
         setName(e.target.value)
     }
@@ -16,7 +18,7 @@ function MyForm({user}) {
     const handleSubmit = (e)=>{
         e.preventDefault()
         console.log("Enviando o Form")
-        console.log(name, email, bio)
+        console.log(name, email, bio, role)
         //7-limpar form
         setName("")
         setEmail("")
@@ -44,6 +46,17 @@ function MyForm({user}) {
             <label htmlFor="">
                 <span>Bio:</span>
                 <textarea name="bio" placeholder='descrição do usuario' onChange={(e) => setBio(e.target.value)} value={bio}></textarea>
+            </label>
+
+            {/*9-input select*/}
+            <label >
+                <span>Função no sistema</span>
+                <select name="role" onChange={(e) => setBio(e.target.value)}>
+                    <option value="usuario">Usuario</option>
+                    <option value="editor">Editor</option>
+                    <option value="admin">Administrador</option>
+                    <option value="cagueta">Cagueta</option>
+                </select>
             </label>
             <input type="submit" value="Enviar"/>
         </form>
