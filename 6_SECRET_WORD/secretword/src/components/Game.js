@@ -4,7 +4,7 @@ const Game = ({verifyLetter}) => {
   return (
     <div>
       <h1>Game</h1>
-      <button ocClick={verifyLetter}>Finalizaa jogo</button>
+      <button onClick={verifyLetter}>Finalizaa jogo</button>
       </div>
   )
 }

@@ -20,10 +20,47 @@ const stages = [
 function App() {
   const[gameStage, setGameStage] = useState(stages[0].name)
   const [words] = useState(wordsList)
+
+  const [pickedWord, setPickedWord] = useState("")
+  const [pickedCategory, setPickedCategory] = useState("")
+  const [letters, setLetters] = useState([])
+
+  const pickWordAndCategory = ( ) => {
+    //pick a random category
+    const categories = Object.keys(words)
+    const category = categories[Math.floor(Math.random() * Object.keys(categories).length)]
+    
+    console.log(category)
+
+    //pick a random word
+    const word = words[category][Math.floor(Math.random() * words[category].length)]
+    console.log(word)
+
+    return {word, category}
+  }
+
+
 // starts the secret game
   const startGame = () => {
-    setGameStage(stages[0].name)
+    //pick word and picl category
+    const{word,category} = pickWordAndCategory()
+
+    //create an array of letters
+    let wordLetters = word.split("")
+
+    wordLetters = wordLetters.map((l) => l.toLowerCase())
+
+    console.log(word,category)
+    console.log(wordLetters)
+
+    //fill states
+    setPickedWord(word)
+    setPickedCategory(category)
+    setLetters(letters)
+
+    setGameStage(stages[1].name)
   }
+
   // process the letter input
   const verifyLetter = () =>{
     setGameStage(stages[2].name)
@@ -31,7 +68,7 @@ function App() {
 
   // restarts the game
   const retry = () => {
-    setGameStage(stages[0].name)
+    setGameStage(stages[3].name)
   }
   return (
     <div className="App">
