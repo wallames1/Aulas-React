@@ -34,6 +34,8 @@ function App() {
   //pontuação
   const [score, setScore] = useState (0)
 
+  const [actualGuessedLetters, setActualGuessedLetters] = useState([]);
+
   const pickWordAndCategory = ( ) => {
     //pick a random category
     const categories = Object.keys(words)
@@ -71,8 +73,31 @@ function App() {
   }
 
   // process the letter input
-  const verifyLetter = () =>{
-    setGameStage(stages[2].name)
+  const verifyLetter = (letter) =>{
+  const normalizeLetter = letter.toLowerCase()
+
+  //check if letter has already been utilized
+  if(
+  guessedLetters.includes(normalizeLetter) || 
+  wrongLetters.includes(normalizeLetter))
+    {
+      return
+    }
+
+    //push guessed letter or remove a guess
+    if(letters.includes(normalizeLetter)) {
+      setGuessedLetters((actualGuessedLetters) => [
+        ...actualGuessedLetters,
+        normalizeLetter,
+      ])
+    } else{
+      setWrongLetters((actualGuessedLetters) => [
+        ...actualGuessedLetters,
+        normalizeLetter,
+      ])
+    }
+    console.log(guessedLetters)
+    console.log(wrongLetters)
   }
 
   // restarts the game
