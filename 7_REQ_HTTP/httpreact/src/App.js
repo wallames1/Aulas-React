@@ -33,22 +33,36 @@ function App() {
   }, []); // O array vazio garante que a requisição aconteça apenas uma vez após o componente ser montado
 
   console.log(products); // Aqui você pode ver os dados no console
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    const product ={
+      name,
+      price,
+    }
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(product)
+    })
+  }
   return (
     <div className="App">
       <h1>Lista de produtos</h1>
       
         <ul>
           {products.map((product) =>(
-            <li key={product.key}>
+            <li key={product.id}>
               {product.name} - R$ {product.price}
             </li>
           ))}
         </ul>
-
-{/* <div className="add-product">
-        <p>Adicionar produto:</p>
-
         
+        <div className="add-product">
+        <p>Adicionar produto:</p>
         <form onSubmit={handleSubmit}>
           <label>
             Nome:
@@ -68,8 +82,10 @@ function App() {
               onChange={(e) => setPrice(e.target.value)}
             />
           </label>
-          
-        </form> </div>*/}
+          <input type="submit" value="Criar" />
+          {/* 7 - state de loading no post */}
+        </form>
+      </div>
       
       </div>
     

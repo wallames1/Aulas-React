@@ -1,46 +1,44 @@
 {
-    "products":[
-     {
-        "id":1,
-        "name":"Camisa",
-        "price":23.2
-
-     },
-     {
-        "id":2,
-        "name":"cueca",
-        "price":15
-
-     },
-     {
-        "id":3,
-        "name":"Bermuda tectel ripcurl",
-        "price":232
-
-     },
-     {
-        "id":4,
-        "name":"Bermuda slin",
-        "price":89
-
-     },
-     {
-        "id":5,
-        "name":"Calça Calvin kleyn",
-        "price":880
-
-     },
-     {
-        "id":6,
-        "name":"Meia Adidas",
-        "price":15
-
-     },
-     {
-        "id":7,
-        "name":"bone oakley",
-        "price":150
-
-     }
-    ]
+  "products": [
+    {
+      "id": 1,
+      "name": "Camisa",
+      "price": 23.2
+    },
+    {
+      "id": 2,
+      "name": "cueca",
+      "price": 15
+    },
+    {
+      "id": 3,
+      "name": "Bermuda tectel ripcurl",
+      "price": 232
+    },
+    {
+      "id": 4,
+      "name": "Bermuda slin",
+      "price": 89
+    },
+    {
+      "id": 5,
+      "name": "Calça Calvin kleyn",
+      "price": 880
+    },
+    {
+      "id": 6,
+      "name": "Meia Adidas",
+      "price": 15
+    },
+    {
+      "id": 7,
+      "name": "bone oakley",
+      "price": 150
+    },
+    {
+      "name": "Meia Nike",
+      "price": "12",
+      "id": 8
+    }
+  ]
 }
