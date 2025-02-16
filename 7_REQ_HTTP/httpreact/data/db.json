@@ -39,6 +39,21 @@
       "name": "Meia Nike",
       "price": "12",
       "id": 8
+    },
+    {
+      "name": "Meia Umbro",
+      "price": "123",
+      "id": 9
+    },
+    {
+      "name": "Camisa Poloplay",
+      "price": "22",
+      "id": 10
+    },
+    {
+      "name": "Camisa Poloplay verde",
+      "price": "222",
+      "id": 11
     }
   ]
 }
