@@ -1,6 +1,7 @@
 import "./App.css";
 
 import { useState, useEffect } from "react";
+import { useFetch } from "./hooks/useFetch";
 
 const url = "http://localhost:3000/products";
 
@@ -12,7 +13,10 @@ function App() {
   const [price, setPrice] = useState("");
   const [products, setProducts] = useState([])
 
-  useEffect(() => {
+  // 4 custom
+  const {data: items} = useFetch(url)
+
+ /*  useEffect(() => {
     async function fetchData() {
       try {
         const res = await fetch(url);
@@ -30,9 +34,8 @@ function App() {
     }
 
     fetchData();
-  }, []); // O array vazio garante que a requisição aconteça apenas uma vez após o componente ser montado
+  }, []); */ // O array vazio garante que a requisição aconteça apenas uma vez após o componente ser montado
 
-  console.log(products); // Aqui você pode ver os dados no console
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -62,7 +65,7 @@ function App() {
       <h1>Lista de produtos</h1>
       
         <ul>
-          {products.map((product) =>(
+          {items && items.map((product) =>(
             <li key={product.id}>
               {product.name} - R$ {product.price}
             </li>
