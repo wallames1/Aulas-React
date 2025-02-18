@@ -7,14 +7,12 @@ const url = "http://localhost:3000/products";
 
 function App() {
 
-
-  
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [products, setProducts] = useState([])
 
   // 4 custom
-  const {data: items, httpConfig} = useFetch(url)
+  const {data: items, httpConfig, loading} = useFetch(url)
 
  /*  useEffect(() => {
     async function fetchData() {
@@ -66,14 +64,18 @@ function App() {
   return (
     <div className="App">
       <h1>Lista de produtos</h1>
+      {/*6 - loading*/}
+      {loading && <p>CARREGANDO...</p>}
       
+      {!loading && (
         <ul>
-          {items && items.map((product) =>(
-            <li key={product.id}>
-              {product.name} - R$ {product.price}
-            </li>
-          ))}
-        </ul>
+        {items && items.map((product) =>(
+          <li key={product.id}>
+            {product.name} - R$ {product.price}
+          </li>
+        ))}
+      </ul>
+      )}
         
         <div className="add-product">
         <p>Adicionar produto:</p>
