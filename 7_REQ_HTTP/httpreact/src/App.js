@@ -14,7 +14,7 @@ function App() {
   const [products, setProducts] = useState([])
 
   // 4 custom
-  const {data: items} = useFetch(url)
+  const {data: items, httpConfig} = useFetch(url)
 
  /*  useEffect(() => {
     async function fetchData() {
@@ -44,7 +44,7 @@ function App() {
       name,
       price,
     }
-    const res = await fetch(url, {
+    /* const res = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -56,6 +56,9 @@ function App() {
     //3.carregamento dinamico
     const addedProduct = await res.json()
     setProducts((prevProducts) => [...prevProducts, addedProduct])
+     */
+    //5 - refatorando Post
+    httpConfig(product, "POST")
     setName ("")
     setPrice ("")
 
