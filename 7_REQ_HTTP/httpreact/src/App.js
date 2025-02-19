@@ -12,7 +12,7 @@ function App() {
   const [products, setProducts] = useState([])
 
   // 4 custom
-  const {data: items, httpConfig, loading} = useFetch(url)
+  const {data: items, httpConfig, loading, error} = useFetch(url)
 
  /*  useEffect(() => {
     async function fetchData() {
@@ -61,17 +61,23 @@ function App() {
     setPrice ("")
 
   }
+  //8 -desafio 6
+  const handleRemove = (id) => {
+    httpConfig(id, "DELETE")
+  }
+  
   return (
     <div className="App">
       <h1>Lista de produtos</h1>
       {/*6 - loading*/}
       {loading && <p>CARREGANDO...</p>}
-      
-      {!loading && (
+      {error && <p>{error}</p>}
+      {!error && (
         <ul>
         {items && items.map((product) =>(
           <li key={product.id}>
             {product.name} - R$ {product.price}
+            <button onClick={() => handleRemove(product.id)}> EXCLUIR</button>
           </li>
         ))}
       </ul>
