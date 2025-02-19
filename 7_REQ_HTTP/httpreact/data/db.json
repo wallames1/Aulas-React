@@ -84,6 +84,51 @@
       "name": "chinelo",
       "price": "244",
       "id": 17
+    },
+    {
+      "name": "munhequeira",
+      "price": "122",
+      "id": 18
+    },
+    {
+      "name": "chave fenda",
+      "price": "94",
+      "id": 19
+    },
+    {
+      "name": "chave fenda",
+      "price": "94",
+      "id": 20
+    },
+    {
+      "name": "chave fenda",
+      "price": "94",
+      "id": 21
+    },
+    {
+      "name": "chave fenda",
+      "price": "94",
+      "id": 22
+    },
+    {
+      "name": "chave fenda",
+      "price": "94",
+      "id": 23
+    },
+    {
+      "name": "chave fenda",
+      "price": "94",
+      "id": 24
+    },
+    {
+      "name": "chave fenda",
+      "price": "94",
+      "id": 25
+    },
+    {
+      "name": "canudo",
+      "price": "999",
+      "id": 26
     }
   ]
 }
