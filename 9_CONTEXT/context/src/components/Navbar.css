@@ -1,0 +1,40 @@
+/* Definindo o estilo geral do nav */
+nav {
+    background-color: #333; /* Cor de fundo */
+    padding: 10px 20px; /* Espaçamento interno */
+    display: flex;
+    justify-content: center; /* Centraliza os itens */
+    align-items: center;
+    gap: 20px; /* Espaçamento entre os links */
+  }
+  
+  /* Estilizando os links */
+  nav a {
+    color: white; /* Cor do texto */
+    text-decoration: none; /* Remove o sublinhado */
+    font-size: 16px; /* Tamanho da fonte */
+    font-weight: 500; /* Peso da fonte */
+    padding: 10px 15px; /* Espaçamento interno nos links */
+    border-radius: 5px; /* Bordas arredondadas */
+    transition: background-color 0.3s ease; /* Transição suave para o hover */
+  }
+  
+  /* Efeito de hover para os links */
+  nav a:hover {
+    background-color: #575757; /* Cor de fundo ao passar o mouse */
+    color: #f1f1f1; /* Cor do texto ao passar o mouse */
+  }
+  
+  /* Estilo para o link ativo */
+  nav a.active {
+    background-color: #007bff; /* Cor de fundo quando o link está ativo */
+    color: white; /* Cor do texto quando ativo */
+    font-weight: 600; /* Destaca o link ativo */
+  }
+  
+  /* Estilo de foco para acessibilidade */
+  nav a:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 4px;
+  }
+  
