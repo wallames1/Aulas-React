@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { CounterProvider } from "./components/context/CounterContext"; // Corrigir para CounterProvider
+import { CounterProvider } from "./context/CounterContext"; // Corrigir para CounterProvider
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
