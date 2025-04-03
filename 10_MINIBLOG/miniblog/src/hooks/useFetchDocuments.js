@@ -1,58 +1,51 @@
 import { useState, useEffect } from "react";
-import {db} from "../firebase/config"
-import {
-    collection, query, orderBy,
-    onSnapshot, where,
-    QuerySnapshot,
-} from "firebase/firestore"
+import { db } from "../firebase/config";
+import { collection, getDocs, query, orderBy, where } from "firebase/firestore";
 
+export const useFetchDocuments = (docCollection, search) => {
+  const [documents, setDocuments] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-export const useFetchDocuments = (docCollection, search = null, uid = null) => {
-    const [documents, setDocuments] = useState (null)
-    const [error, setError] = useState (null)
-    const [loading, setLoading] = useState(null)
+  useEffect(() => {
+    const loadDocuments = async () => {
+      if (!docCollection) {
+        console.error("Erro: Nome da coleção não foi fornecido.");
+        setError("Erro ao buscar documentos.");
+        return;
+      }
 
-    const [cancelled, setCancelled] = useState(false);
-    
-    useEffect(() => {
+      setLoading(true);
+      setError(null);
 
-        async function loadData(){
-            if(cancelled) return
+      try {
+        const collectionRef = collection(db, docCollection);
+        let q;
 
-            setLoading(true)
-
-            const collection = await collection (db,docCollection)
-
-            try{
-                let q 
-                q = await query(collection, orderBy("createdAt", "desc"))
-
-                await onSnapshot(q,(QuerySnapshot) => {
-
-                    setDocuments(
-                        QuerySnapshot.docs.map((doc) => ({
-                            id: doc.id,
-                            ...doc.data()
-                        }))
-                    )
-                })
-
-                setLoading(false)
-
-            }catch (error) {
-                console.log(error)
-                setError(error.message)
-
-                setLoading(false)
-            }
+        if (search) {
+          q = query(collectionRef, where("tagsArray", "array-contains", search), orderBy("createdAt", "desc"));
+        } else {
+          q = query(collectionRef, orderBy("createdAt", "desc"));
         }
-        
-        loadData()
-    },[docCollection, search, uid, cancelled])
 
-    useEffect(() => {
-        return () => setCancelled(true)
-    },[])
+        const querySnapshot = await getDocs(q);
+        const results = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
 
-    return {documents, loading, error}
-}
+        setDocuments(results);
+        console.log("Posts carregados:", results);
+      } catch (error) {
+        console.error("Erro ao buscar posts:", error);
+        setError("Erro ao buscar documentos.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadDocuments();
+  }, [docCollection, search]);
+
+  return { documents, loading, error };
+};
