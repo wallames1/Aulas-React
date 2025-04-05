@@ -19,6 +19,7 @@ import Login from './pages/Login/Login';
 import CreatePost from './pages/CreatePost/CreatePost';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Search from './pages/search/Search';
+import Posts from './pages/Posts/Posts';
 
 
 function App() {
@@ -49,6 +50,10 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/about' element={<About/>}/>
           <Route path='/search' element={<Search/>}/>
+          <Route path='/posts/:id' element={<Posts/>}/>
+
+
+
 
           <Route path='/login' element={!user ? <Login/> : <Navigate to="/"/>}/>
           <Route path='/register' element={!user ? <Register/> : <Navigate to="/"/>}/>
