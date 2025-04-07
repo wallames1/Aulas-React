@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { db } from "../firebase/config";
 import { collection, getDocs, query, orderBy, where } from "firebase/firestore";
 
-export const useFetchDocuments = (docCollection, search) => {
+export const useFetchDocuments = (docCollection, search, uid) => {
   const [documents, setDocuments] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -24,7 +24,11 @@ export const useFetchDocuments = (docCollection, search) => {
 
         if (search) {
           q = query(collectionRef, where("tagsArray", "array-contains", search), orderBy("createdAt", "desc"));
-        } else {
+        } else if(uid) {
+          q = query(collectionRef, where("uid", "==", uid), orderBy("createdAt", "desc"));
+
+
+        }else {
           q = query(collectionRef, orderBy("createdAt", "desc"));
         }
 
@@ -45,7 +49,7 @@ export const useFetchDocuments = (docCollection, search) => {
     };
 
     loadDocuments();
-  }, [docCollection, search]);
+  }, [docCollection, search, uid]);
 
   return { documents, loading, error };
 };
