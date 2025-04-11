@@ -4,7 +4,7 @@ import { doc
     ,getDoc
  } from "firebase/firestore";
 
-export const useFetchDocumen = (docCollection, id) => {
+export const useFetchDocument = (docCollection, id) => {
   const [document, setDocument] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

@@ -1,55 +1,47 @@
 import { useState, useEffect } from "react";
 import { db } from "../firebase/config";
-import { collection, getDocs, query, orderBy, where } from "firebase/firestore";
+import { collection, query, where, orderBy, onSnapshot } from "firebase/firestore";
 
-export const useFetchDocuments = (docCollection, search, uid) => {
-  const [documents, setDocuments] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+export const useFetchDocuments = (docCollection, search = null, uid = null) => {
+  const [documents, setDocuments] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const loadDocuments = async () => {
-      if (!docCollection) {
-        console.error("Erro: Nome da coleção não foi fornecido.");
-        setError("Erro ao buscar documentos.");
-        return;
-      }
+    setLoading(true);
 
-      setLoading(true);
-      setError(null);
+    const collectionRef = collection(db, docCollection);
 
-      try {
-        const collectionRef = collection(db, docCollection);
-        let q;
+    let q;
 
-        if (search) {
-          q = query(collectionRef, where("tagsArray", "array-contains", search), orderBy("createdAt", "desc"));
-        } else if(uid) {
-          q = query(collectionRef, where("uid", "==", uid), orderBy("createdAt", "desc"));
+    if (search) {
+      q = query(
+        collectionRef,
+        where("keywords", "array-contains", search),
+        orderBy("createdAt", "desc")
+      );
+    } else if (uid) {
+      q = query(
+        collectionRef,
+        where("uid", "==", uid),
+        orderBy("createdAt", "desc")
+      );
+    } else {
+      q = query(collectionRef, orderBy("createdAt", "desc"));
+    }
 
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      let results = [];
 
-        }else {
-          q = query(collectionRef, orderBy("createdAt", "desc"));
-        }
+      snapshot.forEach((doc) => {
+        results.push({ id: doc.id, ...doc.data() });
+      });
 
-        const querySnapshot = await getDocs(q);
-        const results = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
+      setDocuments(results);
+      setLoading(false);
+    });
 
-        setDocuments(results);
-        console.log("Posts carregados:", results);
-      } catch (error) {
-        console.error("Erro ao buscar posts:", error);
-        setError("Erro ao buscar documentos.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadDocuments();
+    return () => unsubscribe(); // cancela o listener ao desmontar
   }, [docCollection, search, uid]);
 
-  return { documents, loading, error };
+  return { documents, loading };
 };
